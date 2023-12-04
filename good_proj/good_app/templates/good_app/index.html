@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Хорошая</title>
+</head>
+<body>
+    <div style="width: 700px; left: 50%; margin-left: 100px; margin-top: 100px">
+        <form action="{% url 'index' %}" method="post">
+            {% csrf_token %}
+            <p>
+                <label class="form-label" for="id_name">Названиу суда:</label>
+                <input  class="form-control" type="text" name="name" value="{{form.cleaned_data.name}}" maxlength="250" id="id_name">
+            </p>
+            <button type="submit" class="btn btn-primary">Перевести</button>
+        </form>
+    </div>
+    {% if s_out  %}
+    <h1 style="width: 700px; left: 50%; margin-left: 100px; margin-top: 20px">{{ s_out }}</h1>
+    {% endif %}
+    <h1></h1>
+</body>
+</html>
