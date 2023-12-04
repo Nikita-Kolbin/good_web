@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from .nn.model import Model
 from .forms import *
 
@@ -14,7 +13,6 @@ def hello(request):
     if request.method == 'POST':
         form = InputForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
             s_in = form.cleaned_data['name']
     else:
         form = InputForm()
