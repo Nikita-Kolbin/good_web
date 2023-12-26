@@ -25,4 +25,27 @@ def hello(request):
         'form': form
     }
 
-    return render(request, 'good_app/index.html', context)
+    return render(request, 'good_app/index_test.html', context)
+
+
+def index(request):
+    return render(request, 'good_app/index.html')
+
+
+def result(request):
+    s_in = None
+    if request.method == 'POST':
+        form = InputForm(request.POST)
+        if form.is_valid():
+            s_in = form.cleaned_data['name']
+
+    context = {
+        "s_in": s_in,
+        "card": True
+    }
+
+    return render(request, 'good_app/resultPage.html', context)
+
+
+def report(request):
+    return render(request, 'good_app/errorReportPage.html')

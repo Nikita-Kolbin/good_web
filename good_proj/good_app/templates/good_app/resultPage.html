@@ -1,0 +1,124 @@
+{% extends 'good_app/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<body>
+    <p></p>
+    <header class="main-header">
+        <a class="logo" href="{% url 'index' %}">
+            <img src="{% static 'good_app/images/logo.svg' %}" width="255px" heigh="36px" alt="Логотип">
+        </a>
+    </header>
+    <main class="hero">
+        <section class="result-container">
+            <a href="{% url 'index' %}" class="go-back-button">
+                <img src="{% static 'good_app/images/arrow-left.svg' %}" width="24px" height="24px">
+                <p>РЕДАКТИРОВАТЬ СПИСОК</p>
+            </a>
+            <div class="view-buttons">
+                <button class="cards-button change-view active">
+                    Карточки
+                </button>
+                <button class="fields-button change-view">
+                    Многострочные поля
+                </button>
+                <div class="popup-container">
+                    <div class="overlay hidden" id="overlay"></div>
+                        <div class="popup" id="popup">
+                            <div class="popup-content">
+                                <ul class="cases-buttons">
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+                <button id="showPopup">
+                    <img src="{% static 'good_app/images/filter.svg' %}" width="24px" height="24px">
+                    Фильтры
+                </button>
+            </div>
+            <ul class="card-list">
+
+            </ul>
+
+
+        </section>
+    </main>
+    <footer class="main-footer">
+    </footer>
+
+    <template id="card-template">
+    <li>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" >Заголовок карточки</h3>
+                <img class="clipboard-trigger" data-clipboard-trigger="1" data-clipboard-target="#textToCopy" src="{% static 'good_app/images/clipboard.svg' %}" width="28px" height="28px">
+            </div>
+            <ul class="results-list" id="textToCopy"  data-clipboard-trigger="1">
+                <li class="result-item" id="textToCopy"  data-clipboard-trigger="1">
+                    <p class="case-name">Падеж</p>
+                    <img class="clipboard-trigger-one-result"  data-clipboard-trigger="1" data-clipboard-target="#textToCopy" src="{% static 'good_app/images/clipboard.svg' %}" width="16px" height="16px">
+                    <p class="result">Результат</p>
+                </li>
+
+                <li class="result-item" id="textToCopy"  data-clipboard-trigger="2">
+                    <p class="case-name">Падеж</p>
+                    <img class="clipboard-trigger-one-result" data-clipboard-trigger="2" data-clipboard-target="#textToCopy" src="{% static 'good_app/images/clipboard.svg' %}" width="16px" height="16px">
+                    <p class="result">Результат</p>
+                </li>
+                <li class="result-item" id="textToCopy"  data-clipboard-trigger="3">
+                    <p class="case-name">Падеж</p>
+                    <img class="clipboard-trigger-one-result" data-clipboard-trigger="3" data-clipboard-target="#textToCopy" src="{% static 'good_app/images/clipboard.svg' %}" width="16px" height="16px">
+                    <p class="result">Результат</p>
+                </li>
+            </ul>
+            <div class="evaluation">
+                <a href="errorReportPage.html"><img class="dislike" width="24px" height="24px" src="{% static 'good_app/images/thumbs-down.svg' %}"></a>
+                <img class="like" width="24px" height="24px" src="{% static 'good_app/images/thumbs-up.svg' %}">
+            </div>
+        </div>
+    </li>
+    </template>
+
+    <template id="field-template">
+    <li>
+        <div class="field">
+            <div class="field-header">
+                <h3 class="field-title" >Заголовок Поля</h3>
+                <button class="download-button">Cкачать .txt </button>
+            </div>
+             <textarea class='input-textaera' id="inputField" rows="5" cols="50" id="myTextarea"></textarea>
+        </div>
+    </li>
+    </template>
+
+    <template id="sliders-template">
+        <li class="case-button">
+            <p class="case-title ablative-case">Родительный падеж</p>
+            <div class="slider-container active" id="ablative-case">
+                <div class="slider-knob" id="sliderKnob"></div>
+            </div>
+        </li>
+        <li class="case-button">
+            <p class="case-title dative-case">Дательный падеж</p>
+            <div class="slider-container active" id="dative-case">
+                <div class="slider-knob" id="sliderKnob"></div>
+            </div>
+        </li>
+        <li class="case-button">
+            <p class="case-title creative-case">Творительный падеж</p>
+            <div class="slider-container active" id="creative-case">
+                <div class="slider-knob" id="sliderKnob"></div>
+            </div>
+        </li>
+    </template>
+
+    <input type="hidden" id="myVar" name="variable" value="7">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="{% static 'good_app/js/mainResult.js' %}" type="module">
+        let testVariable = 1;
+    </script>
+</body>
+
+{% endblock %}

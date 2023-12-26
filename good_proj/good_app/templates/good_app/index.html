@@ -1,24 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Хорошая</title>
-</head>
+{% extends 'good_app/base.html' %}
+{% load static %}
+
+{% block body %}
+
 <body>
-    <div style="width: 700px; left: 50%; margin-left: 100px; margin-top: 100px">
-        <form action="{% url 'index' %}" method="post">
-            {% csrf_token %}
-            <p>
-                <label class="form-label" for="id_name">Названиу суда:</label>
-                <input  class="form-control" type="text" name="name" value="{{form.cleaned_data.name}}" maxlength="250" id="id_name">
-            </p>
-            <button type="submit" class="btn btn-primary">Перевести</button>
-        </form>
-    </div>
-    {% if s_out  %}
-    <h1 style="width: 700px; left: 50%; margin-left: 100px; margin-top: 20px">{{ s_out }}</h1>
-    {% endif %}
-    <h1></h1>
+    <header class="main-header">
+        <a class="logo" href="{% url 'index' %}">
+            <img src="{% static 'good_app/images/logo.svg' %}" width="255px" heigh="36px" alt="Логотип">
+        </a>
+        <p class="site-description">
+            Добро пожаловать на TitleTranslate! Здесь вы сможете легко преобразовать
+            название учреждения из именительного падежа в родительный, дательный и творительный.
+            Наш инструмент упрощает процесс, экономит ваше время и помогает адаптировать названия учреждений
+             к различным лингвистическим контекстам.
+        </p>
+    </header>
+    <main class="hero">
+        <section class="case-container">
+            <div class="popup-container">
+            <div class="overlay" id="overlay"></div>
+                <div class="popup cases-table-popup" id="popup">
+                    <div class="popup-content">
+                        <h2>Таблица падежей</h2>
+                        <table class="case-rules-table">
+                            <tr>
+                                <td>Падеж</td>
+                                <td>Вспомогательное слово</td>
+                                <td>Вопрос</td>
+                                <td>Предлоги</td>
+                            </tr>
+                            <tr>
+                                <td>Именительный</td>
+                                <td>Есть</td>
+                                <td>Кто? Что?</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Родительный</td>
+                                <td>Нет</td>
+                                <td>Кого? Чего?</td>
+                                <td>с, у, от, до, из, без, для, вокруг, около, возле, кроме </td>
+                            </tr>
+                            <tr>
+                                <td>Дательный</td>
+                                <td>Дать</td>
+                                <td>Кому? Чему?</td>
+                                <td>к, по, благодаря, вопреки, согласно</td>
+                            </tr>
+                            <tr>
+                                <td>Винительный</td>
+                                <td>Винить</td>
+                                <td>Кого? Что?</td>
+                                <td>под, за, про, через, в, на, во</td>
+                            </tr>
+                            <tr>
+                                <td>Творительный</td>
+                                <td>Творить</td>
+                                <td>Кем? Чем?</td>
+                                <td>с, со, за, над, под, между, перед</td>
+                            </tr>
+                            <tr>
+                                <td>Предложный</td>
+                                <td>Думаю(о)</td>
+                                <td>О ком? О чём?</td>
+                                <td>в, о, об, на, при, по</td>
+                            </tr>
+                        </table>
+                        <h2>Примеры</h2>
+                        <article class="examples">
+                        <p> <span>Автозаводский районный суд г. Тольятти (именительный падеж)</span> <br>
+                            Автозаводского районного суда г. Тольятти (родительный падеж)<br>
+                            Автозаводскому районному суду г. Тольятти (дательный падеж) <br>
+                            Автозаводским районным судом г. Тольятти (творительный падеж) <br>
+                        </p>
+                        <p>
+                            <span>Шкотовский р-ый суд приморского края (именительный падеж) </span> <br>
+                            Шкотовского р-го суда приморского края (родительный падеж) <br>
+                            Шкотовскому р-му суду приморского края (дательный падеж) <br>
+                            Шкотовским р-ым судом приморского края (творительный падеж)</p>
+                        </article>
+                        <button id="closePopup">
+                            <img src="{% static 'good_app/images/exit.svg' %}" width="48px" height="48px">
+                        </button>
+                </div>
+             </div>
+            </div>
+            <button id="showPopup">Правила склонения</button>
+
+            <form action="{% url 'result' %}" method="post">
+                {% csrf_token %}
+
+                <textarea placeholder="Введите фразы построчно" class='input-textaera' name="name" id="id_name" rows="5" cols="50" id="myTextarea"></textarea>
+                <div class="work-buttons">
+    <!--                <form action="{% url 'index_test' %}" method="post">-->
+    <!--                    {% csrf_token %}-->
+
+    <!--                    <p>-->
+    <!--                        <label class="form-label" for="id_name">Названиу суда:</label>-->
+    <!--                        <input  class="form-control" type="text" name="name" value="{{form.cleaned_data.name}}" maxlength="250" id="id_name">-->
+    <!--                    </p>-->
+
+    <!--                    <button type="submit" class="btn btn-primary">Перевести</button>-->
+    <!--                </form>-->
+
+
+    <!--                <form action="{% url 'index_test' %}" method="post">-->
+                        <div class="import">
+                            <label for="fileInput" class="import-button"> Импортировать .txt</label>
+                                <input type="file" id="fileInput" accept=".txt" style="display: none">
+                            <p class='import-txt'>каждая строка = новая фраза</p>
+                        </div>
+
+                        <ul class="cases-buttons">
+                            <button type="submit" class="declination-button">
+                                <img src="{% static 'good_app/images/zap.svg' %}" width="24px" height="24px">
+                                <p>ПРОСКЛОНЯТЬ</p>
+                            </button>
+                            <li class="case-button">
+                                <p class="case-title ablative-case">Родительный падеж</p>
+                                <div class="slider-container active" id="ablative-case">
+                                    <div class="slider-knob" id="sliderKnob"></div>
+                                </div>
+                            </li>
+                            <li class="case-button">
+                                <p class="case-title dative-case">Дательный падеж</p>
+                                <div class="slider-container active" id="dative-case">
+                                    <div class="slider-knob" id="sliderKnob"></div>
+                                </div>
+                            </li>
+                            <li class="case-button">
+                                <p class="case-title creative-case">Творительный падеж</p>
+                                <div class="slider-container active" id="creative-case">
+                                    <div class="slider-knob" id="sliderKnob"></div>
+                                </div>
+                            </li>
+                        </ul>
+                </div>
+            </form>
+
+        </section>
+    </main>
+    <script src="{% static 'good_app/js/main.js' %}" type="module"></script>
+    <footer class="main-footer">
+    </footer>
 </body>
-</html>
+
+{% endblock %}

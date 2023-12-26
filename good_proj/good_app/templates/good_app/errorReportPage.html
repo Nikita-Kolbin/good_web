@@ -1,0 +1,52 @@
+{% extends 'good_app/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<body>
+    <header class="main-header">
+        <a class="logo" href="{% url 'index' %}">
+            <img src="{% static 'good_app/images/logo.svg' %}" width="255px" heigh="36px" alt="Логотип">
+        </a>
+    </header>
+    <main class="hero">
+        <section class="error-container">
+            <a href="resultPage.html" class="go-back-button">
+                <img src="{% static 'good_app/images/arrow-left.svg' %}" width="24px" height="24px">
+                <p>К РЕЗУЛЬТАТАМ</p>
+            </a>
+            <form>
+            <h1>Сообщение об ошибке</h1>
+            <ul class="error-list">
+                <li>
+                    <label class="error-label" for="original-phrase"  aria-required="true">Исходная фраза</label>
+                    <input id="original-phrase">
+                </li>
+                <li>
+                    <label class="error-label" for="ablative-case" aria-required="true">Родительный падеж</label>
+                    <input id="ablative-case">
+                </li>
+                <li>
+                    <label class="error-label" for="dative-case" aria-required="true">Дательный  падеж</label>
+                    <input id="dative-case">
+                </li>
+                <li>
+                    <label class="error-label" for="creative-case" aria-required="true">Творительный падеж</label>
+                    <input id="creative-case">
+                </li>
+            </ul>
+            <label class="error-label" for="error-textarea" aria-required="false">Комментарий (необязательно)</label>
+            <textarea class="error-textaera" id="inputField" rows="5" cols="50" id="myTextarea error-textarea"></textarea>
+
+            <a href="" class="send-button">
+                <img src="{% static 'good_app/images/arrow-right.svg' %}" width="24px" height="24px">
+                <p>ОТПРАВИТЬ</p>
+            </a>
+            </form>
+        </section>
+    </main>
+    <footer class="main-footer">
+    </footer>
+</body>
+
+{% endblock %}
