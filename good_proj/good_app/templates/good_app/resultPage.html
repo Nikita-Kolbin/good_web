@@ -113,12 +113,10 @@
         </li>
     </template>
 
-    <input type="hidden" id="myVar" name="variable" value="7">
+    <input type="hidden" id="myVar" name="variable" value="{{courts}}">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
-    <script src="{% static 'good_app/js/mainResult.js' %}" type="module">
-        let testVariable = 1;
-    </script>
+    <script src="{% static 'good_app/js/mainResult.js' %}" type="module"></script>
 </body>
 
 {% endblock %}
