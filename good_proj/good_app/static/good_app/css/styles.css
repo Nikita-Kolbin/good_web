@@ -1,6 +1,6 @@
 body {
     font-family: Montserrat Alternates;
-    background-color: #f4f4f4;
+    background-color: #F1F1F1;
     font-style: normal;
     font-weight: 500;
     margin: 0;
@@ -50,6 +50,9 @@ section {
 
 .case-title {
     margin-right: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: left;
 }
 
 .work-buttons{
@@ -101,6 +104,8 @@ label{
     margin: 0;
 }
 .input-textaera{
+    background: #F1F1F1;
+
     width: 1187px;
     height: 371px;
     border-radius: 40px;
@@ -181,8 +186,10 @@ label{
     max-width: 50vh    ;
     max-height: 20vh;
 
+    padding: 5px;
+
     position: fixed;
-    top: 38%;
+    top: 32%;
     left:80%;
     box-shadow: none;
     border-radius: 15px;
@@ -191,8 +198,9 @@ label{
 }
 .popup-content:has(.cases-buttons){
     margin-right: 8px;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
     margin-left: 8px;
+    margin-top: 8px;
 }
 
 .popup-content {
@@ -283,7 +291,17 @@ label{
 }
 .popup table {
     position: relative; /* Добавлено для использования абсолютного позиционирования внутри .popup */
+    border: 0px solid #3D3D3D;
+    border-collapse: collapse;
+    /*display:block;
+    border-radius: 12px;*/
 }
+.table-container {
+    overflow: hidden;
+    border: 2px solid #3D3D3D;
+    border-radius: 12px;
+}
+
 .examples{
     font-size: 20px;
     font-style: normal;
@@ -376,6 +394,7 @@ label{
     list-style-type: none;
     padding: 0;
     margin: 0;
+    padding-bottom: 20px;
 
 }
 .card-list .card{
@@ -396,8 +415,10 @@ label{
 .card-list .card .card-title{
     text-align: left;
     margin-left: 32px;
-    padding-top: 24px;
+    margin-top: 24px;
     margin-bottom: 24px;
+
+    font-size: 24px;
 }
 
 .results-list{
@@ -412,10 +433,15 @@ label{
 }
 .result-item p{
     margin: 0;
+    margin-left: 8px;
 }
 .result-item .case-name{
     margin-left: 32px;
     margin-right: 62px;
+
+    display: block;
+    width: 200px;
+    text-align: left;
 }
 
 
@@ -437,12 +463,14 @@ label{
     display: flex;
 }
 .change-view{
-    background-color: #f4f4f4;
+    background-color: #F1F1F1;;
     border: none;
     text-decoration: none;
     font-size: 20px;
     font-weight: 600;
     margin-right: 48px;
+    font-family: Montserrat Alternates;
+
 }
 .change-view.active{
     color: #EF3124;
@@ -452,9 +480,19 @@ label{
     display: flex;
     justify-content: space-between;
 }
+.field-title{
+    font-family: Montserrat Alternates;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    margin-bottom: 16px;
+    margin-top: 15px;
+    padding-left: 36px;
+}
 
 .download-button {
     text-wrap: nowrap;
+    font-family: Montserrat Alternates;
 }
 
 .error-container h1{
